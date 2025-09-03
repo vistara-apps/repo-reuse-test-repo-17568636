@@ -1,0 +1,14 @@
+{
+  "name": "Repo Reuse Test",
+  "description": "Repo Reuse Test is a Base Mini App built with Zara.",
+  "image": "https://dummyimage.com/1200x628/0a0b0d/ffffff.png&text=OG",
+  "external_url": "https://repo-reuse-test.vistara.dev",
+  "properties": {
+    "app": {
+      "name": "Repo Reuse Test",
+      "description": "Repo Reuse Test is a Base Mini App built with Zara.",
+      "url": "https://repo-reuse-test.vistara.dev",
+      "icon": "https://0co.to/images/zara-2.png"
+    }
+  }
+}
