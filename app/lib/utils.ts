@@ -1,6 +1,7 @@
 /**
  * Utility functions for the application
  */
+/* eslint-disable no-unused-vars */
 
 /**
  * Truncates an Ethereum address for display
@@ -12,7 +13,7 @@
 export function truncateAddress(address: string, startChars = 6, endChars = 4): string {
   if (!address) return '';
   if (address.length <= startChars + endChars) return address;
-  
+
   return `${address.slice(0, startChars)}...${address.slice(-endChars)}`;
 }
 
@@ -23,7 +24,7 @@ export function truncateAddress(address: string, startChars = 6, endChars = 4): 
  */
 export function formatDate(dateString: string): string {
   if (!dateString) return '';
-  
+
   const date = new Date(dateString);
   return new Intl.DateTimeFormat('en-US', {
     year: 'numeric',
@@ -43,9 +44,9 @@ export function formatDate(dateString: string): string {
  */
 export function formatCurrency(value: number | string, currency = 'ETH', decimals = 4): string {
   const numValue = typeof value === 'string' ? parseFloat(value) : value;
-  
+
   if (isNaN(numValue)) return `0 ${currency}`;
-  
+
   return `${numValue.toFixed(decimals)} ${currency}`;
 }
 
@@ -64,18 +65,21 @@ export function isValidEthereumAddress(address: string): boolean {
  * @param wait Wait time in milliseconds
  * @returns Debounced function
  */
-export function debounce<T extends (...args: any[]) => any>(
+// eslint-disable-next-line no-unused-vars
+export function debounce<T extends (..._: any[]) => any>(
   func: T,
   wait: number
 ): (...args: Parameters<T>) => void {
-  let timeout: NodeJS.Timeout | null = null;
-  
-  return function(...args: Parameters<T>) {
+  let timeout: ReturnType<typeof setTimeout> | null = null;
+
+  // eslint-disable-next-line no-unused-vars
+  return function (...args: Parameters<T>) {
+    // eslint-disable-next-line no-unused-vars
     const later = () => {
       timeout = null;
       func(...args);
     };
-    
+
     if (timeout) clearTimeout(timeout);
     timeout = setTimeout(later, wait);
   };
@@ -89,11 +93,11 @@ export function debounce<T extends (...args: any[]) => any>(
 export function generateId(length = 10): string {
   const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let result = '';
-  
+
   for (let i = 0; i < length; i++) {
     result += characters.charAt(Math.floor(Math.random() * characters.length));
   }
-  
+
   return result;
 }
 
@@ -110,4 +114,3 @@ export function safeJsonParse<T>(json: string, fallback: T): T {
     return fallback;
   }
 }
-

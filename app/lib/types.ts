@@ -64,4 +64,3 @@ export interface DataItemRequest {
   name: string;
   content?: string;
 }
-

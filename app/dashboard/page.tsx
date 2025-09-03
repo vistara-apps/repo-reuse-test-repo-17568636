@@ -13,7 +13,6 @@ export default function Dashboard() {
   const router = useRouter();
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  
   // Redirect to home if not connected
   useEffect(() => {
     if (!isConnected) {
@@ -48,7 +47,6 @@ export default function Dashboard() {
       }, 1500);
     }
   }, [isConnected, router, address]);
-  
   return (
     <div className="min-h-screen bg-gray-900 text-white p-4">
       <div className="max-w-6xl mx-auto">
@@ -56,7 +54,6 @@ export default function Dashboard() {
           <h1 className="text-3xl font-bold">Dashboard</h1>
           <Button onClick={() => router.push('/')}>Back to Home</Button>
         </header>
-        
         {/* Account Overview */}
         <Card className="mb-8">
           <CardHeader>
@@ -79,7 +76,6 @@ export default function Dashboard() {
             </div>
           </CardContent>
         </Card>
-        
         {/* Transaction History */}
         <Card>
           <CardHeader>
@@ -107,19 +103,21 @@ export default function Dashboard() {
                     </tr>
                   </thead>
                   <tbody>
-                    {transactions.map((tx) => (
+                    {transactions.map(tx => (
                       <tr key={tx.id} className="border-b border-gray-700 hover:bg-gray-800">
                         <td className="py-3 px-4 capitalize">{tx.type}</td>
                         <td className="py-3 px-4">{tx.amount} ETH</td>
                         <td className="py-3 px-4">{formatDate(tx.timestamp)}</td>
                         <td className="py-3 px-4">
-                          <span className={`inline-block px-2 py-1 rounded text-xs ${
-                            tx.status === 'confirmed' 
-                              ? 'bg-green-900 text-green-300' 
-                              : tx.status === 'pending' 
-                                ? 'bg-yellow-900 text-yellow-300' 
-                                : 'bg-red-900 text-red-300'
-                          }`}>
+                          <span
+                            className={`inline-block px-2 py-1 rounded text-xs ${
+                              tx.status === 'confirmed'
+                                ? 'bg-green-900 text-green-300'
+                                : tx.status === 'pending'
+                                  ? 'bg-yellow-900 text-yellow-300'
+                                  : 'bg-red-900 text-red-300'
+                            }`}
+                          >
                             {tx.status}
                           </span>
                         </td>
@@ -136,4 +134,3 @@ export default function Dashboard() {
     </div>
   );
 }
-
